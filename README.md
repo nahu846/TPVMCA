@@ -4,22 +4,18 @@ Trabajo computacion aplicada UP
 ## Pasos:
 
 ### Cambio de contraseña:
-- inicio por primera vez
-```
-e
-```
+- inicio por primera vez, y en el menu grub presiono `e`
+
 - navego hasta
 ```
-x
+    linux    /boot/vmlinuz-... ... ro quiet
 ```
 - agrego al final
 ```sh
 init=/bin/bash
 ```
-- guardo con
-```
-f10
-```
+- guardo con `f10`
+  
 - monto el filesystem /
 ```sh
 mount -o remount,rw /
@@ -44,7 +40,7 @@ hostanamectl --static set-hostname TPServer
 
 ### Upgrade de version
 - Para actualizar 11->12
-```
+```sh
 vim /etc/apt/sources.list
 ```
  - Reemplazo repos del archivo por:
@@ -54,43 +50,43 @@ vim /etc/apt/sources.list
   deb http://deb.debian.org/debian bookworm-updates main contrib non-free-firmware
   ```
 - Actualizo repos
-```
+```sh
 apt update
 ```
 - Hago upgrade
-```  
+```sh
 apt full-update
 ```
     
 ### Instalar ssh:
-```
+```sh
 apt-get install openssh-server
 ```
 - Configuro claves
    - Extarer archivo comprimido:
-    ```
+    ```sh
     gunzip Material_Adicional_TPVMCA.tar.gz
     ```
-    ```
+    ```sh
     tar --extract -f Material_Adicional_TPVMCA.tar
     ```
    - Creacion y copia de claves publica/privada
-    ```
+    ```sh
     cat Material_Adicional_TPVMCA/clave_publica.pub >> /root/.ssh/authorized_keys
     ```
 
 ### Instalar e iniciar apache
-```
+```sh
 apt install apache2 php
 ```
-```
+```sh
 systemctl enable apache2
 ```
-```
+```sh
 systemctl start apache2
 ```
  - Edito config
-```
+```sh
 vim /etc/apache2/sites-available/000-default.conf
 ```
 ```
