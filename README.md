@@ -57,9 +57,11 @@ apt update
 ```sh
 apt full-update
 ```
+- Reinicio para aplicar cambios
     
 ### Instalar ssh:
 ```sh
+apt-get update
 apt-get install openssh-server
 ```
 - Configuro claves
@@ -77,7 +79,7 @@ apt-get install openssh-server
 
 ### Instalar e iniciar apache
 ```sh
-apt install apache2 php
+apt install apache2 php libapache2-mod-php
 ```
 ```sh
 systemctl enable apache2
@@ -101,9 +103,12 @@ vim /etc/apache2/sites-available/000-default.conf
 
 ### Base de datos:
 
-
-
-
+```sh
+apt install mariadb-server php-mysql
+```
+```sh
+mysql -u root < Material_Adicional_TPVMCA/db.sql
+```
     
     
     
