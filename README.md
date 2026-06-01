@@ -93,15 +93,15 @@ systemctl enable apache2
 ```sh
 systemctl start apache2
 ```
- - Edito configuracion de sitio
+- Edito configuracion de sitio
 ```sh
 vim /etc/apache2/sites-available/000-default.conf
 ```
 - Cambio la configuracion del archivo:
 ```
-    DocumentRoot /root/Material_Adicional_TPVMCA
+    DocumentRoot /www_dir
 
-    <Directory /root/Material_Adicional_TPVMCA>
+    <Directory /www_dir>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
@@ -113,7 +113,7 @@ vim /etc/apache2/apache2.conf
 ```
 - Agrego a la configuracion:
 ```sh
-<Directory /root/Material_Adicional_TPVMCA>
+<Directory /www_dir>
      Options Indexes FollowSymLinks
      AllowOverride None
      Require all granted
@@ -121,10 +121,6 @@ vim /etc/apache2/apache2.conf
 ```
 ```sh
 systemctl restart apache2
-```
-- Como prueba cambiamos permisos de /root
-```sh
-chmod 755 /root/
 ```
 
 ### Base de datos:
@@ -156,7 +152,7 @@ lsblk
 ```
 - Configuro las particiones:
 ```
-        fdisk /dev/sdb
+        fdisk /dev/sdc
         n   (nueva partición)
         p
         1
@@ -183,65 +179,31 @@ lsblk
 
 - Formatear
 ```sh
-mkfs.ext4 /dev/sdb1
+mkfs.ext4 /dev/sdc1
 ```
 ```sh
-mkfs.ext4 /dev/sdb2
+mkfs.ext4 /dev/sdc2
 ```
 - Crear directorios y montar
 ```sh
 mkdir -p /www_dir /backup_dir
 ```
 ```sh
-mount /dev/sdb1 /www_dir
+mount /dev/sdc1 /www_dir
 ```
 ```sh
-mount /dev/sdb2 /backup_dir
+mount /dev/sdc2 /backup_dir
 ```
 - Mover archivos web
 ```sh
 cp /root/index.php /root/logo.png /www_dir/
 ```
-- Actualizar Apache (000-default.conf)
-    - Edito configuracion de sitio
-    ```sh
-    vim /etc/apache2/sites-available/000-default.conf
-    ```
-    - Cambio la configuracion del archivo:
-    ```
-        DocumentRoot /www_dir
-    
-        <Directory /www_dir>
-            Options Indexes FollowSymLinks
-            AllowOverride All
-            Require all granted
-        </Directory>
-    ```
-     - Edito configuracion de apache
-    ```sh
-    vim /etc/apache2/apache2.conf
-    ```
-    - Agrego a la configuracion:
-    ```sh
-    <Directory /www_dir>
-         Options Indexes FollowSymLinks
-         AllowOverride None
-         Require all granted
-    </Directory>
-    ```
-    ```sh
-    systemctl restart apache2
-    ```
-- Modifico permisos de /root
-```sh
-chmod 700 /root
-```
 - fstab (automontaje)
 ```sh
-echo "/dev/sdb1  /www_dir    ext4  defaults  0 2" >> /etc/fstab
+echo "/dev/sdc1  /www_dir    ext4  defaults  0 2" >> /etc/fstab
 ```
 ```sh
-echo "/dev/sdb2  /backup_dir ext4  defaults  0 2" >> /etc/fstab
+echo "/dev/sdc2  /backup_dir ext4  defaults  0 2" >> /etc/fstab
 ```
 - Guardar tabla de particiones
 ```sh
