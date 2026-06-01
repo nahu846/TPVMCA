@@ -87,10 +87,11 @@ systemctl enable apache2
 ```sh
 systemctl start apache2
 ```
- - Edito config
+ - Edito configuracion de sitio
 ```sh
 vim /etc/apache2/sites-available/000-default.conf
 ```
+- Cambio la configuracion del archivo:
 ```
     DocumentRoot /root
 
@@ -99,7 +100,19 @@ vim /etc/apache2/sites-available/000-default.conf
         AllowOverride All
         Require all granted
     </Directory>
-``` 
+```
+ - Edito configuracion de apache
+```sh
+vim /etc/apache2/apache2.conf
+```
+- Cambio la configuracion del archivo:
+```sh
+<Directory /www_dir>
+     Options Indexes FollowSymLinks
+     AllowOverride None
+     Require all granted
+</Directory>
+```
 
 ### Base de datos:
 
