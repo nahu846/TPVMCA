@@ -119,6 +119,9 @@ vim /etc/apache2/apache2.conf
      Require all granted
 </Directory>
 ```
+```sh
+systemctl restart apache2
+```
 - Como prueba cambiamos permisos de /root
 ```sh
 chmod 755 /root/
