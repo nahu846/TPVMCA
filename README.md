@@ -107,7 +107,7 @@ vim /etc/apache2/apache2.conf
 ```
 - Cambio la configuracion del archivo:
 ```sh
-<Directory /root>
+<Directory /root/Material_Adicional_TPVMCA>
      Options Indexes FollowSymLinks
      AllowOverride None
      Require all granted
