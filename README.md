@@ -93,9 +93,9 @@ vim /etc/apache2/sites-available/000-default.conf
 ```
 - Cambio la configuracion del archivo:
 ```
-    DocumentRoot /root
+    DocumentRoot /root/Material_Adicional_TPVMCA
 
-    <Directory /root>
+    <Directory /root/Material_Adicional_TPVMCA>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
@@ -107,11 +107,15 @@ vim /etc/apache2/apache2.conf
 ```
 - Cambio la configuracion del archivo:
 ```sh
-<Directory /www_dir>
+<Directory /root>
      Options Indexes FollowSymLinks
      AllowOverride None
      Require all granted
 </Directory>
+```
+- Como prueba cambiamos permisos de /root
+```sh
+chmod 755 /root/
 ```
 
 ### Base de datos:
