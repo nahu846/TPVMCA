@@ -139,12 +139,16 @@ mysql -u root < Material_Adicional_TPVMCA/db.sql
 ```sh
 cd /etc/network/interfaces
 ```
-Configuro la interfaz
+- Configuro la interfaz
 ```
 iface enp0s3 inet static
     address x.x.x.x/24
     netmask 255.255.255.0
     gateway x.x.x.1
+```
+- Reinicio servicio de red
+```sh
+systemctl restart networking
 ```
 
 # 4
